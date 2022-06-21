@@ -19,7 +19,6 @@
 
 package org.matsim.analysis;
 
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.matsim.testcases.MatsimTestUtils;

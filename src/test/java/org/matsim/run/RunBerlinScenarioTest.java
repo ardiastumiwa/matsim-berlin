@@ -65,7 +65,7 @@ public class RunBerlinScenarioTest {
 			config.strategy().setFractionOfIterationsToDisableInnovation(0);
 			config.controler().setOverwriteFileSetting(OverwriteFileSetting.deleteDirectoryIfExists);
 			config.controler().setOutputDirectory( utils.getOutputDirectory() );
-			config.plans().setInputFile("../../../test/input/test-agents.xml");
+			config.plans().setInputFile("test/input/test-agents.xml");
 			
 			Scenario scenario = RunBerlinScenario.prepareScenario( config );
 			
