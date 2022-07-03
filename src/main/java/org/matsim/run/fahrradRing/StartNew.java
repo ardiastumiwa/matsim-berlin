@@ -3,6 +3,7 @@ package org.matsim.run.fahrradRing;
 import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
+import org.matsim.api.core.v01.network.Network;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.groups.ControlerConfigGroup;
 import org.matsim.core.config.groups.PlansCalcRouteConfigGroup;
@@ -35,11 +36,14 @@ public class StartNew {
         //config.plansCalcRoute().addParam("insertingAccessEgressWalk", "true");
 
         Scenario scenario = prepareScenario( config ) ;
+
         var cleaner = new MultimodalNetworkCleaner(scenario.getNetwork());
-        cleaner.run(Set.of(TransportMode.car, TransportMode.ride));
+        cleaner.run(Set.of(TransportMode.car));
+        cleaner.removeNodesWithoutLinks();
 
 
         Controler controler = prepareControler( scenario ) ;
+        controler.getConfig().plansCalcRoute().setAccessEgressType(PlansCalcRouteConfigGroup.AccessEgressType.accessEgressModeToLink);
         controler.getConfig().controler().setRoutingAlgorithmType(ControlerConfigGroup.RoutingAlgorithmType.SpeedyALT);
         controler.getConfig().controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.overwriteExistingFiles);
         controler.run();
