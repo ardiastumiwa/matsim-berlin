@@ -3,7 +3,6 @@ package org.matsim.run.fahrradRing;
 import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
-import org.matsim.api.core.v01.network.Network;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.groups.ControlerConfigGroup;
 import org.matsim.core.config.groups.PlansCalcRouteConfigGroup;
@@ -13,11 +12,10 @@ import org.matsim.core.network.algorithms.MultimodalNetworkCleaner;
 import org.matsim.run.RunBerlinScenario;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static org.matsim.run.fahrradRing.RunFahrradRing.*;
 
-public class StartNew {
+public class RunNetwork {
     private static final Logger log = Logger.getLogger(RunBerlinScenario.class );
 
     public static void main(String[] args) {
@@ -31,7 +29,7 @@ public class StartNew {
         }
 
         Config config = prepareConfig( args ) ;
-        config.network().setInputFile("fahrradRing.network.xml");
+        config.network().setInputFile("berlin-1pct_nein.config.xml");
         //config.plansCalcRoute().setAccessEgressType(PlansCalcRouteConfigGroup.AccessEgressType.);
         //config.plansCalcRoute().addParam("insertingAccessEgressWalk", "true");
 
@@ -44,7 +42,7 @@ public class StartNew {
 
         Controler controler = prepareControler( scenario ) ;
         controler.getConfig().plansCalcRoute().setAccessEgressType(PlansCalcRouteConfigGroup.AccessEgressType.accessEgressModeToLink);
-        controler.getConfig().controler().setRoutingAlgorithmType(ControlerConfigGroup.RoutingAlgorithmType.SpeedyALT);
+        controler.getConfig().controler().setRoutingAlgorithmType(ControlerConfigGroup.RoutingAlgorithmType.FastAStarLandmarks);
         controler.getConfig().controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.overwriteExistingFiles);
         controler.run();
     }
