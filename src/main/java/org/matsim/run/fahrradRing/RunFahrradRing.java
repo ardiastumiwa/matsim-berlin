@@ -115,7 +115,7 @@ public final class RunFahrradRing {
                 } else {
                     var allowedModes = link.getValue().getAllowedModes();
                     var newModes = allowedModes.stream().filter(mode -> mode != TransportMode.car).collect(Collectors.toSet());
-                    link.getValue().setAllowedModes(Set.of(TransportMode.pt, TransportMode.bike));
+                    link.getValue().setAllowedModes(Set.of(TransportMode.pt, TransportMode.bike, TransportMode.walk));
 
                     // road to hell
                     // baustelle

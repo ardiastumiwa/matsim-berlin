@@ -13,7 +13,8 @@ public class Analysis {
 
     public static void main(String[] args) {
 
-        var network = NetworkUtils.readNetwork("D:\\Documents\\MATSim\\matsim-berlin\\scenarios\\berlin-v5.5-1pct\\output\\berlin-v5.5.3-1pct.output_network.xml.gz");
+        //var network = NetworkUtils.readNetwork("scenarios/berlin-v5.5-1pct/output-berlin-v5.5-1pct/berlin-v5.5-1pct.output_network.xml.gz");
+        var network = NetworkUtils.readNetwork("scenarios/berlin-v5.5-1pct/output-policy/berlin-v5.5-1pct.output_network.xml.gz");
 
         var distanceHandler = new DistancesHandler(network);
         var travelledDistanceHandler = new TravelledDistanceHandler(network);
@@ -25,7 +26,8 @@ public class Analysis {
         manager.addHandler(travelledDistanceHandler);
         manager.addHandler(timeHandler);
 
-        EventsUtils.readEvents(manager, "D:\\Documents\\MATSim\\matsim-berlin\\scenarios\\berlin-v5.5-1pct\\output\\berlin-v5.5.3-1pct.output_events.xml.gz");
+        //EventsUtils.readEvents(manager, "scenarios/berlin-v5.5-1pct/output-berlin-v5.5-1pct/berlin-v5.5-1pct.output_events.xml.gz");
+        EventsUtils.readEvents(manager, "scenarios/berlin-v5.5-1pct/output-policy/berlin-v5.5-1pct.output_events.xml.gz");
 
         var tripsByPerson = distanceHandler.getTripDistances();
         var timeByPerson = timeHandler.getTripTime();
